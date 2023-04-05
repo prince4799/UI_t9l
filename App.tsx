@@ -64,13 +64,9 @@ function App(): JSX.Element {
   const width=Dimensions.get('screen').width
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleScroll = (event: any) => {
-    const slideWidth = event.nativeEvent.layoutMeasurement.width;
-    const offset = event.nativeEvent.contentOffset.x;
-    const index = Math.round(offset / slideWidth);
-    setCurrentIndex(index);
-  };
-  const colors=["pink","red","green","yellow"]
+ 
+
+  {/* ==================force sliding==============*/}
 
   // const sliderImages = useMemo(() => {
   //   return images.map((image) => (
@@ -84,7 +80,6 @@ function App(): JSX.Element {
   // }, [images]);
 
 
-  // const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -94,6 +89,9 @@ function App(): JSX.Element {
     return () => clearInterval(intervalId);
   }, []);
   
+
+{/*============Auto Sliding=================*/}
+
   const autoSliderImages = (
     <Image
       key={images[currentIndex].key}
@@ -147,17 +145,8 @@ function App(): JSX.Element {
         horizontal={true}
         pagingEnabled={true}
         showsHorizontalScrollIndicator={false}
-      // onMomentumScrollEnd={()=>console.log("event")}
       >
-        {/* {images.map((image, index) => (
-          <Image
-            key={index}
-            source={image.url}
-            style={styles.imageSlider}
-            resizeMode='contain'
-            /> 
-            ))}
-          */}
+        
            {autoSliderImages}
       </ScrollView>
       {/* ==============Shop our Collection========= */}
